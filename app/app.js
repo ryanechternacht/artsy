@@ -7,5 +7,5 @@ angular.module('myApp', [
   'events'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/analytics'});
+  // $routeProvider.otherwise({redirectTo: '/analytics'});
 }]);
