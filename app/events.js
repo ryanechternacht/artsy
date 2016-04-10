@@ -10,7 +10,14 @@ angular.module('events', ['ngRoute'])
 }])
 
 .controller('EventsCtrl', ['$scope', '$http', function($scope, $http) {
-    $scope.events = buildEventData();
+    // $scope.events = buildEventData();
+    $http({ method: 'GET', url: '/data/events' }).then(response => {
+        if(response.data) { 
+            $scope.events = response.data;
+        } else {
+            // TODO do what?
+        }
+    });
 }]);
 
 function buildEventData() {

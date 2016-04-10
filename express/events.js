@@ -4,7 +4,7 @@ exports.getEventList = function(req, res) {
     console.log("/events");
 
     var options = {
-        host: 'http://54.86.24.29',
+        host: '54.86.24.29',
         port: 80,
         path: '/api/v1/events/?format=json',
         method: 'GET'
@@ -16,14 +16,15 @@ exports.getEventList = function(req, res) {
         var data = "";
 
         response.on('data', function(chunk) { 
-            // console.log("chunk");
+            console.log("chunk");
             data += chunk;
         });
 
         response.on('end', function() { 
-            // console.log("end");
-            var state = JSON.parse(data);
-            res.send(state.ledger);
+            console.log("end");
+            // var state = JSON.parse(data);
+            // res.send(state.ledger);
+            res.send(data);
         });
     });
 
