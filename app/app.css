@@ -11,3 +11,12 @@
 #new-visitors .highcharts-legend-item {
     display: none;
 }
+
+.fundraising-title {
+    font-size: 18px;
+    text-align: center;
+}
+
+#heatmap .highcharts-data-labels {
+    display: none;
+}

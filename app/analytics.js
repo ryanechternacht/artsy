@@ -12,8 +12,9 @@ angular.module('analytics', ['ngRoute'])
 .controller('AnalyticsCtrl', ['$scope', function($scope) {
     buildExhibitTime();
     buildNewVisitors();
-    buildNewOldPopularity();
-    buildFundraising();
+    buildLikesPerVisit();
+    // buildFundraising();
+    buildHeatMap();
 }]);
 
 function buildExhibitTime() { 
@@ -105,15 +106,16 @@ function buildNewVisitors() {
         });
     });
 }
-function buildNewOldPopularity() {
+
+function  buildLikesPerVisit() {
     $(function () {
         $('#new-old-popularity').highcharts({
             title: {
-                text: 'Popularity of New and Existing Exhibits',
+                text: 'Visit Popularity',
                 x: -20 //center
             },
             subtitle: {
-                text: '% of time spent in each',
+                text: 'Average Likes per Visit',
                 x: -20
             },
             xAxis: {
@@ -140,10 +142,10 @@ function buildNewOldPopularity() {
             },
             series: [{
                 name: 'New Exhibits',
-                data: [60, 58, 55, 42, 40, 43, 66, 67, 66, 60, 58, 57]
+                data: [60, 58, 55, 53, 54, 55, 57, 59, 61, 60, 58, 64]
             }, {
                 name: 'Existing Exhibits',
-                data: [40, 42, 45, 58, 60, 57, 34, 33, 34, 40, 42, 43]
+                data: [40, 42, 45, 44, 43, 46, 48, 50, 53, 51, 55, 54]
             }]
         });
     });
@@ -235,4 +237,73 @@ function buildFundraising() {
 
         }));
     });
+}
+
+function buildHeatMap() {
+    $(function () {
+
+    $('#heatmap').highcharts({
+
+        chart: {
+            type: 'heatmap',
+            marginTop: 40,
+            marginBottom: 80,
+            plotBorderWidth: 1
+        },
+
+        title: {
+            text: 'Weekly Interest by Group'
+        },
+
+        xAxis: {
+            categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        },
+
+        yAxis: {
+            categories: ['Large Group', 'Small Group', 'Family', 'Couple', 'Single'],
+            title: null
+        },
+
+        colorAxis: {
+            min: 0,
+            minColor: '#FFFFFF',
+            maxColor: Highcharts.getOptions().colors[0]
+        },
+
+        legend: {
+            align: 'right',
+            layout: 'vertical',
+            margin: 0,
+            verticalAlign: 'top',
+            y: 25,
+            symbolHeight: 280
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> <br><b>' +
+                    this.point.value + '</b> people visited in <b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+            }
+        },
+
+        series: [{
+            name: 'Visitors',
+            borderWidth: 1,
+            data: [
+                [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], 
+                [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], 
+                [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], 
+                [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], 
+                [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], 
+                [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], 
+                [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], 
+            ],
+            dataLabels: {
+                enabled: true,
+                color: '#000000'
+            }
+        }]
+
+    });
+});
 }

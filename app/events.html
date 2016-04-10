@@ -1,1 +1,24 @@
-event page
+<h2> 
+    Events
+    <div class="pull-right">
+        <small>Sort by:</small> 
+        <select>
+            <option>Most Recent</option>
+        </select>
+    </div>   
+</h2>
+
+<div ng-repeat="e in events">
+    <div class="media">
+        <div class="media-left">
+            <a href="">
+                <img class="media-object" src="{{e.photo}}" alt="{{e.title}}">
+            </a>
+        </div>
+        <div class="media-body">
+             <h4 class="media-heading">{{e.title}}</h4>
+            {{e.description}} 
+        </div>
+    </div>
+    <hr/>
+</div>
