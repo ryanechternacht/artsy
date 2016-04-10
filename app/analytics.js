@@ -4,7 +4,7 @@ angular.module('analytics', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/analytics', {
-        templateUrl: '/app/analytics.html', 
+        templateUrl: '/analytics.html', 
         controller: 'AnalyticsCtrl'
     })
 }])
